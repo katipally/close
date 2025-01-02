@@ -14,12 +14,12 @@ const Hero = () => {
   return (
     <>
       <section id="home-1" className="section">
-        <div className="max-w-4xl mx-auto text-center" ref={ref1}>
+        <div className="max-w-7xl mx-auto text-center" ref={ref1}>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={isInView1 ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
-            className="text-6xl md:text-8xl mb-8"
+            className="text-7xl md:text-9xl mb-8"
           >
             Hey, I'm <span className="brand-text">Yash</span>
           </motion.h1>
@@ -27,28 +27,32 @@ const Hero = () => {
       </section>
 
       <section id="home-2" className="section">
-        <div className="max-w-4xl mx-auto text-center" ref={ref2}>
-          <motion.p
+        <div className="max-w-7xl mx-auto text-center" ref={ref2}>
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView2 ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
-            className="text-xl md:text-2xl text-white/80"
+            className="flex flex-col items-center justify-center space-y-8"
           >
-            I turn <span className="brand-text">Data</span> into{" "}
-            <span className="brand-text">Stories</span>
-          </motion.p>
+            <p className="text-5xl md:text-8xl text-white/90 font-light">
+              I turn <span className="brand-text text-8xl md:text-9xl">Data</span> into
+            </p>
+            <div className="relative w-full max-w-4xl aspect-[3/1] rounded-[2rem] border border-white/10 bg-black/50 backdrop-blur-sm flex items-center justify-center">
+              <span className="brand-text text-7xl md:text-9xl text-white">Stories</span>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       <section id="home-3" className="section">
-        <div className="max-w-4xl mx-auto text-center" ref={ref3}>
+        <div className="max-w-7xl mx-auto text-center" ref={ref3}>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={isInView3 ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
-            className="text-xl md:text-2xl text-white/80"
+            className="text-5xl md:text-8xl text-white/90 font-light"
           >
-            &{" "}<span className="brand-text">Ideas</span> into{" "}
+            & <span className="brand-text text-8xl md:text-9xl">Ideas</span> into{" "}
             <span className="text-white">Reality</span>
           </motion.p>
         </div>
