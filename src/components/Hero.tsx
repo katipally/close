@@ -46,15 +46,19 @@ const Hero = () => {
 
       <section id="home-3" className="section">
         <div className="max-w-7xl mx-auto text-center" ref={ref3}>
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView3 ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
-            className="text-5xl md:text-8xl text-white/90 font-light"
+            className="flex flex-col items-center justify-center space-y-8"
           >
-            & <span className="brand-text text-8xl md:text-9xl">Ideas</span> into{" "}
-            <span className="text-white">Reality</span>
-          </motion.p>
+            <div className="relative w-full max-w-4xl aspect-[3/1] rounded-[2rem] border border-white/10 bg-black/50 backdrop-blur-sm flex items-center justify-center">
+              <span className="brand-text text-8xl md:text-9xl text-white">&amp; Ideas</span>
+            </div>
+            <p className="text-5xl md:text-8xl text-white/90 font-light">
+              into <span className="text-white text-8xl md:text-9xl">Reality</span>
+            </p>
+          </motion.div>
         </div>
       </section>
     </>
