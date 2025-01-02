@@ -14,12 +14,12 @@ const Hero = () => {
   return (
     <>
       <section id="home-1" className="section">
-        <div className="max-w-7xl mx-auto text-center" ref={ref1}>
+        <div className="relative w-full max-w-7xl aspect-[2/1] rounded-[3rem] border border-white/10 bg-black flex items-center justify-center" ref={ref1}>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={isInView1 ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
-            className="text-7xl md:text-9xl mb-8"
+            className="text-7xl md:text-9xl"
           >
             Hey, I'm <span className="brand-text">Yash</span>
           </motion.h1>
