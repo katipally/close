@@ -31,19 +31,21 @@ const Navigation = () => {
         )}
       >
         <div className="h-full flex items-center justify-center">
-          <ul className="space-y-8 text-center">
-            {menuItems.map((item) => (
-              <li key={item.label} className="animate-fade-in">
-                <a
-                  href={item.href}
-                  className="text-2xl hover:text-white/70 transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="bg-white rounded-[2rem] py-8 px-16">
+            <ul className="space-y-6">
+              {menuItems.map((item) => (
+                <li key={item.label} className="animate-fade-in text-center">
+                  <a
+                    href={item.href}
+                    className="text-black text-xl hover:text-black/70 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
