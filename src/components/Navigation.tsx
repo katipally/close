@@ -26,26 +26,24 @@ const Navigation = () => {
 
       <div
         className={cn(
-          "fixed inset-0 bg-black/90 backdrop-blur-sm transition-transform duration-300",
-          isOpen ? "translate-x-0" : "translate-x-full"
+          "fixed top-0 right-0 mt-24 mr-8 transition-all duration-300",
+          isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
         )}
       >
-        <div className="h-full flex items-center justify-center">
-          <div className="bg-white rounded-[2rem] py-8 px-16">
-            <ul className="space-y-6">
-              {menuItems.map((item) => (
-                <li key={item.label} className="animate-fade-in text-center">
-                  <a
-                    href={item.href}
-                    className="text-black text-xl hover:text-black/70 transition-colors"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="bg-white rounded-[2rem] py-6 px-12 min-w-[200px]">
+          <ul className="space-y-4">
+            {menuItems.map((item) => (
+              <li key={item.label} className="animate-fade-in text-center">
+                <a
+                  href={item.href}
+                  className="text-black text-lg hover:text-black/70 transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </nav>
