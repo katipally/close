@@ -6,14 +6,15 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { label: "Home", href: "#home" },
+    { label: "Home", href: "#home-1" },
     { label: "About Me", href: "#about" },
     { label: "My Work", href: "#work" },
     { label: "Contact", href: "#contact" },
   ];
 
   return (
-    <nav className="fixed top-0 right-0 z-50 p-4">
+    <nav className="fixed top-0 right-0 z-50 p-8">
+      <span className="brand-text fixed top-0 left-0 z-50 p-8 text-4xl md:text-4.5xl"><a href="#home-1">Yash</a></span>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="relative z-50 rounded-full bg-white/10 backdrop-blur-sm p-2 hover:bg-white/20 transition-colors"

@@ -25,16 +25,17 @@ const About = () => {
   ];
 
   return (
+    <>
     <section id="about" className="section">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="card mb-16"
+          className="relative w-full max-w-7xl aspect-[4/1] rounded-[3rem] border-2 border-white/60 bg-black flex flex-col items-bottom justify-center p-8 mb-48"
         >
-          <h2 className="text-3xl md:text-4xl mb-6">About Me</h2>
-          <p className="text-lg text-white/80">
+          <h2 className="text-3xl md:text-4xl mb-6 font-bold text-center">About Me</h2>
+          <p className="text-lg md:text-xl text-white/80 text-center max-w-4xl">
             Hi, I am Yash, a passionate Data Analytics graduate student at San José State University
             with a solid background in Computer Science and Engineering. I have experience in machine
             learning, deep learning, computer vision, and web development. I thrive in challenging
@@ -42,14 +43,18 @@ const About = () => {
             mindset.
           </p>
         </motion.div>
+        </div>
+    </section>
 
+    <section id="about-2" className="section">
+    <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="card"
+          className="relative w-full max-w-7xl rounded-[3rem] border-2 border-white/60 bg-black flex flex-col items-bottom justify-center p-12"
         >
-          <h2 className="text-3xl md:text-4xl mb-8">Skills</h2>
+          <h2 className="text-3xl md:text-4xl mb-8 text-center font-bold">Skills</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {skills.map((skillGroup, index) => (
               <motion.div
@@ -70,6 +75,7 @@ const About = () => {
         </motion.div>
       </div>
     </section>
+    </>
   );
 };
 

@@ -30,15 +30,16 @@ const Work = () => {
   ];
 
   return (
+    <>
     <section id="work" className="section">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto ">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <h2 className="text-3xl md:text-4xl mb-8">Projects</h2>
+          <h2 className="text-3xl md:text-4xl mb-8 text-center">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <motion.div
@@ -46,7 +47,7 @@ const Work = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="card hover:scale-105 transition-transform cursor-pointer"
+                className="relative w-full max-w-7xl rounded-[2rem] border-2 border-white/60 bg-black flex flex-col items-bottom justify-center p-8"
               >
                 <img
                   src={project.image}
@@ -58,13 +59,17 @@ const Work = () => {
             ))}
           </div>
         </motion.div>
+        </div>
+    </section>
 
+        <section id="work-2" className="section">
+        <div className="max-w-4xl mx-auto ">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl mb-8">Publications</h2>
+          <h2 className="text-3xl md:text-4xl mb-8 text-center">Publications</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {publications.map((publication, index) => (
               <motion.div
@@ -72,7 +77,7 @@ const Work = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="card hover:scale-105 transition-transform cursor-pointer"
+                className="relative w-full max-w-7xl rounded-[2rem] border-2 border-white/60 bg-black flex flex-col items-bottom justify-center p-8"
               >
                 <h3 className="text-xl text-center">{publication.title}</h3>
               </motion.div>
@@ -81,6 +86,7 @@ const Work = () => {
         </motion.div>
       </div>
     </section>
+    </>
   );
 };
 
