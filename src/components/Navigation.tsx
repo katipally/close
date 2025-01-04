@@ -14,10 +14,12 @@ const Navigation = () => {
 
   return (
     <nav className="fixed top-0 right-0 z-50 p-8">
-      <span className="brand-text fixed top-0 left-0 z-50 p-8 text-4xl md:text-4.5xl"><a href="#home-1">Yash</a></span>
+      <span className="brand-text fixed top-0 left-0 z-50 p-8 text-4xl md:text-4.5xl">
+        <a href="#home-1">Yash</a>
+      </span>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative z-50 rounded-full bg-white/10 backdrop-blur-sm p-2 hover:bg-white/20 transition-colors"
+        className="relative z-50 rounded-[1rem] bg-white/5 backdrop-blur-md px-6 py-4 hover:bg-white/10 transition-colors border border-white/10"
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
