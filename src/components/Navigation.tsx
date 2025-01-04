@@ -19,9 +19,10 @@ const Navigation = () => {
       </span>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative z-50 rounded-[1rem] bg-white/5 backdrop-blur-md px-6 py-4 hover:bg-white/10 transition-colors border border-white/10"
+        className="relative z-50 rounded-full bg-black px-6 py-3 hover:bg-black/80 transition-colors border border-white/10 flex items-center gap-2"
       >
-        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        <span className="text-white">Home</span>
+        {isOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
       </button>
 
       <div
