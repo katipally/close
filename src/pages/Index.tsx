@@ -5,11 +5,13 @@ import Work from "@/components/Work";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
       <Navigation />
-      <Hero />
-      <About />
-      <Work />
+      <div className="relative z-20">
+        <Hero />
+        <About />
+        <Work />
+      </div>
     </div>
   );
 };
