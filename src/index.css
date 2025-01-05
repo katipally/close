@@ -53,13 +53,6 @@
 
 html {
   scroll-behavior: smooth;
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-body {
-  height: 100%;
 }
 
 .section {
@@ -69,24 +62,6 @@ body {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  position: relative;
-  z-index: 20;
-}
-
-.section > * {
-  opacity: 0;
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .card {
