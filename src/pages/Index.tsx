@@ -53,18 +53,16 @@ const Index = () => {
             borderRadius: rectangleStyle.borderRadius,
           }}
         />
-        <div className="relative z-10">
-          {sections.map((section, index) => (
-            <div
-              key={section}
-              className={`section ${index === activeSection ? "active" : ""}`}
-            >
-              {index < 3 && <Hero />}
-              {index >= 3 && index < 5 && <About />}
-              {index >= 5 && <Work />}
-            </div>
-          ))}
-        </div>
+        {sections.map((section, index) => (
+          <div
+            key={section}
+            className={`section ${index === activeSection ? "active" : ""}`}
+          >
+            {index < 3 && <Hero />}
+            {index >= 3 && index < 5 && <About />}
+            {index >= 5 && <Work />}
+          </div>
+        ))}
       </div>
       <div className="scroll-container" />
     </div>
