@@ -44,7 +44,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-lato antialiased;
+    @apply bg-background text-foreground font-lato;
   }
   .brand-text {
     @apply font-pacifico;
@@ -62,35 +62,8 @@ html {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  position: relative;
-  z-index: 1;
 }
 
 .card {
   @apply rounded-[2rem] border border-white/10 bg-black/50 backdrop-blur-sm p-8;
-  transform: translateZ(0);
-}
-
-/* Smooth transitions for all interactive elements */
-a, button, .interactive {
-  @apply transition-all duration-300 ease-in-out;
-}
-
-/* Glass effect for cards and overlays */
-.glass {
-  @apply backdrop-blur-md bg-white/5 border border-white/10;
-}
-
-/* 3D transform utilities */
-.transform-3d {
-  transform-style: preserve-3d;
-  perspective: 1000px;
-}
-
-.hover-lift {
-  transition: transform 0.3s ease-in-out;
-}
-
-.hover-lift:hover {
-  transform: translateY(-5px) scale(1.02);
 }
