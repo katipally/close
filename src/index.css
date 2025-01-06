@@ -37,12 +37,14 @@
 
     --radius: 1rem;
   }
+}
 
+@layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-lato overflow-x-hidden;
+    @apply bg-background text-foreground font-lato;
   }
   .brand-text {
     @apply font-pacifico;
@@ -60,19 +62,8 @@ html {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  position: relative;
-  z-index: 10;
-  perspective: 1000px;
-  transform-style: preserve-3d;
 }
 
 .card {
   @apply rounded-[2rem] border border-white/10 bg-black/50 backdrop-blur-sm p-8;
-  transform: translateZ(0);
-}
-
-/* Ensure content is above the animated rectangle */
-.content-wrapper {
-  position: relative;
-  z-index: 10;
 }
