@@ -1,4 +1,4 @@
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, ThreeEvent } from '@react-three/fiber';
 import { useRef, useState } from 'react';
 import { Mesh, Vector2 } from 'three';
 import * as THREE from 'three';
@@ -22,9 +22,9 @@ const AnimatedSphere = () => {
     }
   });
 
-  const handlePointerMove = (event: React.PointerEvent) => {
-    const x = (event.clientX / window.innerWidth) * 2 - 1;
-    const y = -(event.clientY / window.innerHeight) * 2 + 1;
+  const handlePointerMove = (event: ThreeEvent<PointerEvent>) => {
+    const x = (event.point.x / window.innerWidth) * 2 - 1;
+    const y = -(event.point.y / window.innerHeight) * 2 + 1;
     setMousePosition({ x, y });
   };
 
@@ -37,6 +37,11 @@ const AnimatedSphere = () => {
       <shaderMaterial
         key="shader-material"
         attach="material"
+        transparent
+        uniforms={{
+          time: { value: 0 },
+          mouse: { value: new Vector2(0, 0) }
+        }}
         fragmentShader={`
           uniform float time;
           uniform vec2 mouse;
@@ -77,11 +82,6 @@ const AnimatedSphere = () => {
             gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
           }
         `}
-        uniforms={{
-          time: { value: 0 },
-          mouse: { value: new Vector2(0, 0) }
-        }}
-        transparent={true}
       />
     </mesh>
   );
