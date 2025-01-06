@@ -45,7 +45,6 @@
   }
   body {
     @apply bg-background text-foreground font-lato;
-    overflow-x: hidden;
   }
   .brand-text {
     @apply font-pacifico;
@@ -63,55 +62,8 @@ html {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  position: relative;
-  z-index: 1;
 }
 
 .card {
   @apply rounded-[2rem] border border-white/10 bg-black/50 backdrop-blur-sm p-8;
-  transform-style: preserve-3d;
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: translateZ(20px);
-}
-
-/* 3D Text Effect */
-h1, h2, h3 {
-  transform-style: preserve-3d;
-  perspective: 1000px;
-}
-
-/* Split text animation classes */
-.word {
-  display: inline-block;
-  overflow: hidden;
-  transform-origin: bottom;
-}
-
-/* Parallax effect for sections */
-.parallax {
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-/* Smooth transitions */
-* {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* 3D depth layers */
-.depth-1 { transform: translateZ(50px); }
-.depth-2 { transform: translateZ(100px); }
-.depth-3 { transform: translateZ(150px); }
-
-/* Gradient overlay for depth effect */
-.depth-gradient {
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(0, 0, 0, 0.8)
-  );
-  pointer-events: none;
 }
