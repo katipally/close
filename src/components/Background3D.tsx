@@ -22,7 +22,7 @@ const AnimatedSphere = () => {
     }
   });
 
-  const handlePointerMove = (event: THREE.Event) => {
+  const handlePointerMove = (event: React.PointerEvent) => {
     const x = (event.clientX / window.innerWidth) * 2 - 1;
     const y = -(event.clientY / window.innerHeight) * 2 + 1;
     setMousePosition({ x, y });
@@ -35,6 +35,8 @@ const AnimatedSphere = () => {
     >
       <sphereGeometry args={[1, 64, 64]} />
       <shaderMaterial
+        key="shader-material"
+        attach="material"
         fragmentShader={`
           uniform float time;
           uniform vec2 mouse;
