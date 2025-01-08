@@ -50,7 +50,7 @@ const Navigation = () => {
     { label: "Home", href: "#home-1" },
     { label: "About Me", href: "#about" },
     { label: "My Work", href: "#work" },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact Me", href: "#contact" },
   ];
 
   useEffect(() => {
@@ -94,26 +94,35 @@ const Navigation = () => {
       <div className="relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="relative z-50 flex items-center space-x-2 rounded-full bg-white/10 backdrop-blur-sm p-4 hover:bg-white/20 transition-colors"
+          className="relative z-50 flex items-center space-x-2 rounded-full border-2 border-white/60 bg-black px-6 py-3 hover:bg-black/90 transition-colors"
         >
           {/* Current Section Name */}
-          <span className="text-white text-lg">{currentSection}</span>
+          <span className="text-white text-lg font-medium">{currentSection}</span>
           {/* Conditional Icon */}
-          {isOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6 text-white" />}
+          {isOpen ? (
+            <X className="w-5 h-5 text-white ml-2" />
+          ) : (
+            <Menu className="w-5 h-5 text-white ml-2" />
+          )}
         </button>
 
         {/* Dropdown Menu */}
         {isOpen && (
           <div
-            className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg py-2 z-40"
+            className="absolute right-0 mt-2 w-[280px] bg-black border-2 border-white/60 rounded-full py-2 z-40"
             onClick={() => setIsOpen(false)} // Close the menu on click
           >
-            <ul className="space-y-1 text-black text-center font-bold">
+            <ul className="space-y-1 text-white text-center font-medium px-4">
               {menuItems.map((item) => (
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="block px-4 py-2 text-sm hover:bg-gray-200 transition-colors"
+                    className={cn(
+                      "block px-4 py-2 rounded-full transition-colors",
+                      item.label === currentSection
+                        ? "bg-white text-black"
+                        : "hover:bg-white/10"
+                    )}
                   >
                     {item.label}
                   </a>
@@ -128,3 +137,4 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
