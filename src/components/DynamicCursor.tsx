@@ -8,7 +8,6 @@ interface Position {
 const DynamicCursor: React.FC = () => {
   const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
 
-  // Update cursor position on mouse move
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
@@ -27,11 +26,12 @@ const DynamicCursor: React.FC = () => {
         width: "20px",
         height: "20px",
         borderRadius: "50%",
-        backgroundColor: "white", // Default color
-        mixBlendMode: "difference", // Blend mode to invert the color
-        pointerEvents: "none", // Ensure it doesn't interfere with pointer events
+        backgroundColor: "white",
+        mixBlendMode: "difference",
+        pointerEvents: "none",
         transform: "translate(-50%, -50%)",
         zIndex: 9999,
+        transition: "all 0.1s ease-out",
       }}
     />
   );
