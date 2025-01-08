@@ -1,50 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react"; // Import both icons
 import { cn } from "@/lib/utils";
-
-import { motion, useViewportScroll, useTransform } from "framer-motion";
-
-const FixedRectangle = ({ scrollYProgress }) => {
-  // Rectangle morphing properties
-  const rectangleWidth = useTransform(scrollYProgress, [0.3, 0.5, 0.8, 1], [
-    "80%",
-    "85%",
-    "90%",
-    "95%",
-  ]);
-  const rectangleHeight = useTransform(scrollYProgress, [0.3, 0.5, 0.8, 1], [
-    "50%",
-    "60%",
-    "65%",
-    "70%",
-  ]);
-  const rectangleBorderRadius = useTransform(scrollYProgress, [0.3, 0.5, 0.8, 1], [
-    "3rem",
-    "2rem",
-    "1.5rem",
-    "1rem",
-  ]);
-  const rectangleOpacity = useTransform(scrollYProgress, [0.3, 0.4], [0, 1]);
-
-  return (
-    <motion.div
-      className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black border-2 border-white/60 z-50"
-      style={{
-        width: rectangleWidth,
-        height: rectangleHeight,
-        borderRadius: rectangleBorderRadius,
-        opacity: rectangleOpacity,
-      }}
-    />
-  );
-};
-
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false); // Menu toggle state
-  const [currentSection, setCurrentSection] = useState("Home"); // Current section state
-
-  const sectionRefs = useRef<Record<string, HTMLElement | null>>({}); // Store references to each section
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentSection, setCurrentSection] = useState("Home");
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
   const menuItems = [
     { label: "Home", href: "#home-1" },
@@ -92,49 +54,73 @@ const Navigation = () => {
 
       {/* Hamburger Menu */}
       <div className="relative">
-        <button
+        <motion.button
           onClick={() => setIsOpen(!isOpen)}
           className="relative z-50 flex items-center space-x-2 rounded-full border-2 border-white/60 bg-black px-6 py-3 hover:bg-black/90 transition-colors"
+          animate={isOpen ? {
+            borderRadius: "1rem",
+            width: "280px",
+            transition: { duration: 0.3, ease: "easeInOut" }
+          } : {
+            borderRadius: "9999px",
+            width: "auto",
+            transition: { duration: 0.3, ease: "easeInOut" }
+          }}
         >
           {/* Current Section Name */}
           <span className="text-white text-lg font-medium">{currentSection}</span>
           {/* Conditional Icon */}
-          {isOpen ? (
-            <X className="w-5 h-5 text-white ml-2" />
-          ) : (
-            <Menu className="w-5 h-5 text-white ml-2" />
-          )}
-        </button>
+          <motion.div
+            animate={isOpen ? { rotate: 180 } : { rotate: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {isOpen ? (
+              <X className="w-5 h-5 text-white ml-2" />
+            ) : (
+              <Menu className="w-5 h-5 text-white ml-2" />
+            )}
+          </motion.div>
+        </motion.button>
 
         {/* Dropdown Menu */}
-        {isOpen && (
-          <div
-            className="absolute right-0 mt-2 w-[280px] bg-black border-2 border-white/60 rounded-full py-2 z-40"
-            onClick={() => setIsOpen(false)} // Close the menu on click
-          >
-            <ul className="space-y-1 text-white text-center font-medium px-4">
-              {menuItems.map((item) => (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    className={cn(
-                      "block px-4 py-2 rounded-full transition-colors",
-                      item.label === currentSection
-                        ? "bg-white text-black"
-                        : "hover:bg-white/10"
-                    )}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="absolute right-0 mt-2 w-[280px] bg-black border-2 border-white/60 rounded-2xl py-2 z-40"
+              onClick={() => setIsOpen(false)}
+            >
+              <motion.ul 
+                className="flex flex-row flex-wrap gap-2 text-white text-center font-medium px-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.1 }}
+              >
+                {menuItems.map((item) => (
+                  <li key={item.label} className="w-full">
+                    <a
+                      href={item.href}
+                      className={cn(
+                        "block px-4 py-2 rounded-full transition-colors",
+                        item.label === currentSection
+                          ? "bg-white text-black"
+                          : "hover:bg-white/10"
+                      )}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </motion.ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );
 };
 
 export default Navigation;
-
