@@ -67,3 +67,18 @@ html {
 .card {
   @apply rounded-[2rem] border border-white/10 bg-black/50 backdrop-blur-sm p-8;
 }
+
+/* mouse pointer off */
+* {
+  cursor: none;
+}
+
+/* Hide scrollbars globally */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Edge */
+}

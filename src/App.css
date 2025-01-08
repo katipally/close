@@ -40,3 +40,21 @@
 .read-the-docs {
   color: #888;
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  background: black;
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+.section {
+  position: relative;
+  width: 100%;
+}
+
+.brand-text {
+  color: #ff5722; /* Highlighted color for branding */
+}
