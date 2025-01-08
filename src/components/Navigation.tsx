@@ -56,72 +56,99 @@ const Navigation = () => {
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
-        <motion.button
-          onClick={() => setIsOpen(!isOpen)}
-          className="relative z-50 flex items-center space-x-2 border-2 border-white/60 bg-black px-6 py-3 transition-colors"
+        <motion.div
+          className="relative z-50 flex items-center space-x-2 border-2 border-white/60 bg-black overflow-hidden"
           animate={isOpen ? {
             borderRadius: "2rem",
             width: "auto",
+            paddingLeft: "1.5rem",
+            paddingRight: "1.5rem",
           } : {
             borderRadius: "9999px",
-            width: "auto",
+            width: "3.5rem",
+            paddingLeft: "0.75rem",
+            paddingRight: "0.75rem",
           }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
+          transition={{ 
+            duration: 0.4,
+            ease: [0.23, 1, 0.32, 1]
+          }}
         >
-          <span className="text-white text-lg font-medium">{currentSection}</span>
-          <motion.div
-            animate={isOpen ? { rotate: 180 } : { rotate: 0 }}
-            transition={{ duration: 0.3 }}
+          <motion.button
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex items-center py-3 space-x-2"
           >
-            {isOpen ? (
-              <X className="w-5 h-5 text-white ml-2" />
-            ) : (
-              <Menu className="w-5 h-5 text-white ml-2" />
-            )}
-          </motion.div>
-        </motion.button>
-
-        <AnimatePresence>
-          {isOpen && (
-            <motion.ul
-              initial={{ opacity: 0, scaleX: 0 }}
-              animate={{ 
-                opacity: 1, 
-                scaleX: 1,
-                transition: {
-                  type: "spring",
-                  stiffness: 260,
-                  damping: 20
-                }
-              }}
-              exit={{ 
-                opacity: 0,
-                scaleX: 0,
-                transition: {
-                  duration: 0.2
-                }
-              }}
-              className="absolute right-0 top-0 flex flex-row items-center gap-4 bg-black border-2 border-white/60 rounded-[2rem] py-3 px-6 z-40"
+            <motion.div
+              animate={isOpen ? { rotate: 180 } : { rotate: 0 }}
+              transition={{ duration: 0.3 }}
             >
-              {menuItems.map((item) => (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className={cn(
-                      "block px-4 py-2 rounded-full transition-colors whitespace-nowrap",
-                      item.label === currentSection
-                        ? "bg-white text-black"
-                        : "hover:bg-white/10"
-                    )}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </motion.ul>
-          )}
-        </AnimatePresence>
+              {isOpen ? (
+                <X className="w-5 h-5 text-white" />
+              ) : (
+                <Menu className="w-5 h-5 text-white" />
+              )}
+            </motion.div>
+            <motion.span 
+              className="text-white text-lg font-medium origin-left"
+              initial={false}
+              animate={isOpen ? { 
+                opacity: 1,
+                x: 0,
+                display: "block"
+              } : { 
+                opacity: 0,
+                x: -20,
+                transitionEnd: {
+                  display: "none"
+                }
+              }}
+              transition={{ duration: 0.2 }}
+            >
+              {currentSection}
+            </motion.span>
+          </motion.button>
+
+          <AnimatePresence>
+            {isOpen && (
+              <motion.ul
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ 
+                  opacity: 1,
+                  x: 0,
+                  transition: {
+                    duration: 0.3,
+                    ease: "easeOut"
+                  }
+                }}
+                exit={{ 
+                  opacity: 0,
+                  x: -20,
+                  transition: {
+                    duration: 0.2
+                  }
+                }}
+                className="flex items-center gap-4 ml-4"
+              >
+                {menuItems.map((item) => (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className={cn(
+                        "block px-4 py-2 rounded-full transition-colors whitespace-nowrap",
+                        item.label === currentSection
+                          ? "bg-white text-black"
+                          : "hover:bg-white/10"
+                      )}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </motion.ul>
+            )}
+          </AnimatePresence>
+        </motion.div>
       </motion.div>
     </nav>
   );
