@@ -47,19 +47,26 @@ const Navigation = () => {
         <a href="#home-1">Yash</a>
       </span>
 
-      <div className="relative">
+      <motion.div
+        className="relative"
+        animate={isOpen ? {
+          width: "auto",
+        } : {
+          width: "auto",
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
           className="relative z-50 flex items-center space-x-2 border-2 border-white/60 bg-black px-6 py-3 transition-colors"
           animate={isOpen ? {
             borderRadius: "2rem",
             width: "auto",
-            transition: { duration: 0.3, ease: "easeInOut" }
           } : {
             borderRadius: "9999px",
             width: "auto",
-            transition: { duration: 0.3, ease: "easeInOut" }
           }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
         >
           <span className="text-white text-lg font-medium">{currentSection}</span>
           <motion.div
@@ -76,40 +83,46 @@ const Navigation = () => {
 
         <AnimatePresence>
           {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              className="absolute right-0 mt-2 bg-black border-2 border-white/60 rounded-[2rem] py-2 px-4 z-40"
-              onClick={() => setIsOpen(false)}
+            <motion.ul
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={{ 
+                opacity: 1, 
+                scaleX: 1,
+                transition: {
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 20
+                }
+              }}
+              exit={{ 
+                opacity: 0,
+                scaleX: 0,
+                transition: {
+                  duration: 0.2
+                }
+              }}
+              className="absolute right-0 top-0 flex flex-row items-center gap-4 bg-black border-2 border-white/60 rounded-[2rem] py-3 px-6 z-40"
             >
-              <motion.ul 
-                className="flex flex-row items-center gap-4 text-white text-center font-medium"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.1 }}
-              >
-                {menuItems.map((item) => (
-                  <li key={item.label}>
-                    <a
-                      href={item.href}
-                      className={cn(
-                        "block px-4 py-2 rounded-full transition-colors whitespace-nowrap",
-                        item.label === currentSection
-                          ? "bg-white text-black"
-                          : "hover:bg-white/10"
-                      )}
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </motion.ul>
-            </motion.div>
+              {menuItems.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className={cn(
+                      "block px-4 py-2 rounded-full transition-colors whitespace-nowrap",
+                      item.label === currentSection
+                        ? "bg-white text-black"
+                        : "hover:bg-white/10"
+                    )}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </motion.ul>
           )}
         </AnimatePresence>
-      </div>
+      </motion.div>
     </nav>
   );
 };
