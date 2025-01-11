@@ -58,3 +58,7 @@ html, body {
 .brand-text {
   color: #ff5722; /* Highlighted color for branding */
 }
+
+* {
+  cursor: none;
+}
